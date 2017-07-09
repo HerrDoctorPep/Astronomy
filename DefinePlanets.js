@@ -1,9 +1,3 @@
-
-// Write log
-function writelog(String){
-  return document.getElementById("textlog").innerHTML + "<br>" + String;
-}
-
 //Vector
 function Vector (X,Y)
 {
@@ -12,13 +6,13 @@ function Vector (X,Y)
 }
 
 // Define celestial objects as object
-// Mass in KG, Radius in KM, Angle in 0-2pi, DistacetoSun in KM, RSpeed in m/s,PhiSpeed in Earth Days/orbit, 
-function CelestialObject(Name,Mass,Location,Speed)
+// Mass in KG, Radius in KM, Angle in 0-2pi, DistacetoSun in KM, RSpeed in m/s,PhiSpeed in Earth Days/orbit,
+function CelestialObject(Name,Mass,Place,Speed)
 {
    // Properties
    this.name=Name;
    this.mass=Mass;
-   this.place = Location;
+   this.place = Place;
    this.speed = Speed;
 }
 
@@ -38,21 +32,20 @@ function Move()
   Sun.place.y += Sun.speed.y;
 }
 
-function PrintVectors(ToPrint1,ToPrint2)
+function PrintSpecs(ToPrint)
 {
-  document.getElementById("textlog").innerHTML = writelog("Sun | X: " + Math.round(ToPrint1.x) + " Y: " + Math.round(ToPrint1.y));
-  document.getElementById("textlog").innerHTML = writelog("Earth | X: "+ Math.round(ToPrint2.x) + " Y: " + Math.round(ToPrint2.y));
+  console.log(ToPrint.name + " | Location: X= " + Math.round(ToPrint.place.x) + " Y= " + Math.round(ToPrint.place.y) + " | Speed: X= " + Math.round(ToPrint.speed.x) + " Y= " + Math.round(ToPrint.speed.y));
 }
 
 //And... action
 
 Earth = new CelestialObject("Earth",1000,new Vector(300,200),new Vector(0,10));
 Sun = new CelestialObject("Sun",1000,new Vector(500,200),new Vector(0,-10));
-PrintVectors(Sun.place,Earth.place);
-PrintVectors(Sun.speed,Earth.speed);
+PrintSpecs(Sun);
+PrintSpecs(Earth);
 Move();
-PrintVectors(Sun.place,Earth.place);
-PrintVectors(Sun.speed,Earth.speed);
+PrintSpecs(Sun);
+PrintSpecs(Earth);
 Move();
-PrintVectors(Sun.place,Earth.place);
-PrintVectors(Sun.speed,Earth.speed);
+PrintSpecs(Sun);
+PrintSpecs(Earth);
