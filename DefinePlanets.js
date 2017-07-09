@@ -38,14 +38,14 @@ function PrintSpecs(ToPrint)
 }
 
 //And... action
-
 Earth = new CelestialObject("Earth",1000,new Vector(300,200),new Vector(0,10));
 Sun = new CelestialObject("Sun",1000,new Vector(500,200),new Vector(0,-10));
 PrintSpecs(Sun);
 PrintSpecs(Earth);
-Move();
-PrintSpecs(Sun);
-PrintSpecs(Earth);
-Move();
-PrintSpecs(Sun);
-PrintSpecs(Earth);
+var i; //counter
+for (i = 0; i<100;i++){
+  console.log("i = " + i);
+  Move();
+  PrintSpecs(Sun);
+  PrintSpecs(Earth);
+}
