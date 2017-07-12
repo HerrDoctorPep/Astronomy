@@ -1,15 +1,27 @@
 <HTML>
     <head>
-        <title>Solar System</title>
-		<meta name="description" content="Can I build modelled solar system from the ground up using differential equations?">
-		<meta name="author"content="dr.Pep">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Solar System</title>
+  		<meta name="description" content="Can I build modelled solar system from the ground up using differential equations?">
+	  	<meta name="author"content="dr.Pep">
+		  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-		<p id="textlog">
-			NEW LOG
-		</p>
-		<script type="text/javascript", src = "DefinePlanets.js">
-    </script>
+  		<canvas id="myCanvas" width=1000 height=600 style="border:1px solid"> </canvas>
+  		<script type="text/javascript", src = "DefinePlanets.js"></script>
+      <script type="text/javascript", src = "DefineCanvas.js"></script>
+      <script type="text/javascript">
+        //And... action
+        Earth = new CelestialObject("Earth",1000,new Vector(300,200),new Vector(0,10));
+        Sun = new CelestialObject("Sun",1000,new Vector(500,200),new Vector(0,-10));
+        PrintSpecs(Sun);
+        PrintSpecs(Earth);
+        for (var i = 0; i<100;i++){
+          console.log("i = " + i);
+        Move();
+          PrintSpecs(Sun);
+          PrintSpecs(Earth);
+          Do_a_Frame();
+        }
+      </script>
     </body>
 </HTML>
