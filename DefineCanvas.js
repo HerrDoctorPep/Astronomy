@@ -6,7 +6,7 @@ function DrawBody(Planet,ColorCode) {
   var rect = myCanvas.getBoundingClientRect();
   ctx.fillStyle = ColorCode;
   ctx.beginPath();
-  ctx.arc(Planet.place.x, Planet.place.y, 5, 0, Math.PI * 2);
+  ctx.arc(MeterToPixel * Planet.place.x - rect.left, MeterToPixel * Planet.place.y - rect.top, 5, 0, Math.PI * 2);
   ctx.fill();
 }
 
