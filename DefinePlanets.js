@@ -19,12 +19,13 @@ function CelestialObject(Name,Mass,Place,Speed)
 function Move()
 {
   //Compute gravitational pull
-  var Strength = (1 *  Earth.mass * Sun.mass) / ((Earth.place.x - Sun.place.x)^2 + (Earth.place.y - Sun.place.y)^2)^.5;
+  var Distance = ((Earth.place.x - Sun.place.x)^2 + (Earth.place.y - Sun.place.y)^2)^(0.5);
+  var Strength = 0.0000001 *  Earth.mass * Sun.mass / (Distance^2) ;
   // New speed
-  Earth.speed.x += Strength * Math.sin(Earth.place.x - Sun.place.x) / Earth.mass;
-  Sun.speed.x += Strength * Math.sin(Sun.place.x - Earth.place.x) / Sun.mass;
-  Earth.speed.y += Strength * Math.cos(Earth.place.y - Sun.place.y) / Earth.mass;
-  Sun.speed.y += Strength * Math.cos(Sun.place.y - Earth.place.y) / Sun.mass;
+  Earth.speed.x += Strength * ((Sun.place.x - Earth.place.x)/Distance) / Earth.mass;
+  Sun.speed.x += Strength * ((Earth.place.x - Sun.place.x)/Distance) / Sun.mass;
+  Earth.speed.y += Strength * ((Sun.place.y - Earth.place.y)/Distance) / Earth.mass;
+  Sun.speed.y += Strength * ((Earth.place.y - Sun.place.y)/Distance) / Sun.mass;
   // New place
   Earth.place.x += Earth.speed.x;
   Sun.place.x += Sun.speed.x;
