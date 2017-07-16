@@ -14,8 +14,9 @@
         var MeterToPixel = 200/149.6e9; // m^-1
         var TimeFactor = 60*60*12; // s
         //And... action
-        Earth = new CelestialObject("Earth",5.972e24,new Vector(300/MeterToPixel,300/MeterToPixel),new Vector(0,30000));
+        Earth = new CelestialObject("Earth",5.972e24,new Vector(300/MeterToPixel,300/MeterToPixel),new Vector(0,29780));
         Sun = new CelestialObject("Sun",1.989e30,new Vector(500/MeterToPixel,300/MeterToPixel),new Vector(0,0));
+        Venus = new CelestialObject("Venus",4.867e24,new Vector((500 - (108.9e6/MeterToPixel)*200)/MeterToPixel,300/MeterToPixel),new Vector(0,35020));
         PrintSpecs(Sun);
         PrintSpecs(Earth);
         setInterval(Move,0.5);
