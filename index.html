@@ -14,11 +14,12 @@
         var MeterToPixel = 200/149.6e9; // m^-1
         var TimeFactor = 60*60*12; // s
         //And... action
-        Earth = new CelestialObject("Earth",5.972e24,new Vector(300/MeterToPixel,300/MeterToPixel),new Vector(0,29780));
-        Sun = new CelestialObject("Sun",1.989e30,new Vector(500/MeterToPixel,300/MeterToPixel),new Vector(0,0));
-        Venus = new CelestialObject("Venus",4.867e24,new Vector((500 - (108.9e6/MeterToPixel)*200)/MeterToPixel,300/MeterToPixel),new Vector(0,35020));
-        PrintSpecs(Sun);
-        PrintSpecs(Earth);
+        Earth = new CelestialObject("Earth",5.972e24,"royalblue",new Vector(300/MeterToPixel,300/MeterToPixel),new Vector(0,29780));
+        Sun = new CelestialObject("Sun",1.989e30,"yellow",new Vector(500/MeterToPixel,300/MeterToPixel),new Vector(0,0));
+        Venus = new CelestialObject("Venus",4.867e24,"burlywood",new Vector((500 + (108.9e9*MeterToPixel))/MeterToPixel,300/MeterToPixel),new Vector(0,-35020));
+        Mars = new CelestialObject("Mars",6.39e23,"indianred", new Vector((500 + (227.9e9*MeterToPixel))/MeterToPixel,300/MeterToPixel),new Vector(0,-24077));
+        Mercury = new CelestialObject("Mercury",3.285e23,"dimgray", new Vector((500 + (56.91e9*MeterToPixel))/MeterToPixel,300/MeterToPixel),new Vector(0,-47780));
+        var SolarSystem = [Earth, Venus, Mars, Mercury, Sun];
         setInterval(Move,0.5);
       </script>
     </body>

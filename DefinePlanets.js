@@ -7,35 +7,42 @@ function Vector (X,Y)
 
 // Define celestial objects as object
 // Mass in KG, Radius in KM, Angle in 0-2pi, DistacetoSun in KM, RSpeed in m/s,PhiSpeed in Earth Days/orbit,
-function CelestialObject(Name,Mass,Place,Speed)
+function CelestialObject(Name,Mass,ColorCode,Place,Speed)
 {
    // Properties
    this.name=Name;
    this.mass=Mass;
+   this.colorcode=ColorCode;
    this.place = Place;
    this.speed = Speed;
+}
+
+function BodyMovedBy(Body1,Body2){
+  //Compute gravitational pull
+  // Note that Force has been adjusted sith the TimeFactor to incorporate numerical integration correctly
+  var Distance = Math.pow(Math.pow((Body1.place.x - Body2.place.x),2) + Math.pow((Body1.place.y - Body2.place.y),2),0.5); // m
+  var Force = G *  Body1.mass * Body2.mass / Math.pow(Distance,2) * TimeFactor; // m kg s^-2
+  Body1.speed.x += (Force / Body1.mass) * ((Body2.place.x - Body1.place.x) / Distance);
+  Body1.speed.y += (Force / Body1.mass) * ((Body2.place.y - Body1.place.y) / Distance);
+  return Body1;
 }
 
 function Move()
 {
   // Clear the frame
   ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-  //Compute gravitational pull
-  // Note that Force has been adjusted sith the TimeFactor to incorporate numerical integration correctly
-  var Distance = Math.pow(Math.pow((Earth.place.x - Sun.place.x),2) + Math.pow((Earth.place.y - Sun.place.y),2),0.5); // m
-  var Force = G *  Earth.mass * Sun.mass / Math.pow(Distance,2) * TimeFactor; // m kg s^-2
-  // New speed
-  Earth.speed.x += (Force / Earth.mass) * ((Sun.place.x - Earth.place.x) / Distance);
-  Sun.speed.x += (Force / Sun.mass) * ((Earth.place.x - Sun.place.x) / Distance);
-  Earth.speed.y += (Force / Earth.mass) * ((Sun.place.y - Earth.place.y) / Distance);
-  Sun.speed.y += (Force / Sun.mass) * ((Earth.place.y - Sun.place.y) / Distance);
-  // New place
-  Earth.place.x += Earth.speed.x * TimeFactor;
-  Sun.place.x += Sun.speed.x  * TimeFactor;
-  Earth.place.y += Earth.speed.y  * TimeFactor;
-  Sun.place.y += Sun.speed.y  * TimeFactor;
-  PrintSpecs(Sun);
-  PrintSpecs(Earth);
+  for(var i=0;i<SolarSystem.length;i++){
+    for(var j=0;j<SolarSystem.length;j++){
+      if(i!=j){
+        SolarSystem[i].speed = BodyMovedBy(SolarSystem[i],SolarSystem[j]).speed;
+      }
+    }
+    SolarSystem[i].place.x += SolarSystem[i].speed.x * TimeFactor;
+    SolarSystem[i].place.y += SolarSystem[i].speed.y * TimeFactor;
+  }
+  for(i=0;i<SolarSystem.length;i++){
+    PrintSpecs(SolarSystem[i]);
+  }
   Do_a_Frame();
 }
 
