@@ -21,7 +21,7 @@ function Move()
   // Clear the frame
   ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
   //Compute gravitational pull
-  // Note that Force has been adjusted sith the TimeFactor to correct for step-change approximation of differential equation
+  // Note that Force has been adjusted sith the TimeFactor to incorporate numerical integration correctly
   var Distance = Math.pow(Math.pow((Earth.place.x - Sun.place.x),2) + Math.pow((Earth.place.y - Sun.place.y),2),0.5); // m
   var Force = G *  Earth.mass * Sun.mass / Math.pow(Distance,2) * TimeFactor; // m kg s^-2
   // New speed
