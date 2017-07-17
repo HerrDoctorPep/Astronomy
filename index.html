@@ -10,15 +10,19 @@
   		<script type="text/javascript", src = "DefinePlanets.js"></script>
       <script type="text/javascript", src = "DefineCanvas.js"></script>
       <script type="text/javascript">
+        ctx.canvas.width  = cwdth;
+        ctx.canvas.height = chth;
+        var MidX = cwdth/2;
+        var MidY = chth/2;
+        var MeterToPixel = Math.min(MidX,MidY)/2/149.6e9; // m^-1
+        var TimeFactor = 60*60; // s
         var G = 6.6740831e-11; // m^3 kg^-1 s^-2
-        var MeterToPixel = 200/149.6e9; // m^-1
-        var TimeFactor = 60*60*12; // s
         //And... action
-        Earth = new CelestialObject("Earth",5.972e24,"royalblue",new Vector(300/MeterToPixel,300/MeterToPixel),new Vector(0,29780));
-        Sun = new CelestialObject("Sun",1.989e30,"yellow",new Vector(500/MeterToPixel,300/MeterToPixel),new Vector(0,0));
-        Venus = new CelestialObject("Venus",4.867e24,"burlywood",new Vector((500 + (108.9e9*MeterToPixel))/MeterToPixel,300/MeterToPixel),new Vector(0,-35020));
-        Mars = new CelestialObject("Mars",6.39e23,"indianred", new Vector((500 + (227.9e9*MeterToPixel))/MeterToPixel,300/MeterToPixel),new Vector(0,-24077));
-        Mercury = new CelestialObject("Mercury",3.285e23,"dimgray", new Vector((500 + (56.91e9*MeterToPixel))/MeterToPixel,300/MeterToPixel),new Vector(0,-47780));
+        Sun = new CelestialObject("Sun",1.989e30,"yellow",new Vector(MidX/MeterToPixel,MidY/MeterToPixel),new Vector(0,0));
+        Earth = new CelestialObject("Earth",5.972e24,"royalblue",new Vector((MidX + (149.6e9*MeterToPixel))/MeterToPixel,MidY/MeterToPixel),new Vector(0,-29780));
+        Venus = new CelestialObject("Venus",4.867e24,"burlywood",new Vector((MidX + (108.9e9*MeterToPixel))/MeterToPixel,MidY/MeterToPixel),new Vector(0,-35020));
+        Mars = new CelestialObject("Mars",6.39e23,"indianred", new Vector((MidX + (227.9e9*MeterToPixel))/MeterToPixel,MidY/MeterToPixel),new Vector(0,-24077));
+        Mercury = new CelestialObject("Mercury",3.285e23,"dimgray", new Vector((MidX + (56.91e9*MeterToPixel))/MeterToPixel,MidY/MeterToPixel),new Vector(0,-47780));
         var SolarSystem = [Earth, Venus, Mars, Mercury, Sun];
         setInterval(Move,0.5);
       </script>
