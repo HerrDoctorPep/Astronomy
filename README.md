@@ -8,3 +8,5 @@ Starting point is Newton's formula:
 \[ F = G * m_1 * m_2 / r^2 \]
 
 For now I only added the Sun and the inner 4 planets (Mercury, Venus, Earth., Mars)
+
+Test - test - test
